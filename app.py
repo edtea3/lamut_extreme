@@ -50,12 +50,10 @@ def send_data():
 
     try:
         send_email("Новый вопрос с сайта", message_text)
-        flash("success")
+        return jsonify({'status': 'success'})
     except Exception as e:
         print(e)
-        flash("error")
-
-    return redirect(url_for('home'))
+        return jsonify({'status': 'error'})
 
 
 # --- Обработка отзыва ---

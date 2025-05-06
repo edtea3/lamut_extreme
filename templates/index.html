@@ -368,16 +368,16 @@
             </div>
 
             <div class="form-container">
-                <form action="/send" method="post">
+                <form id="requestForm">
                     <label for="name">Ваше имя:</label><br>
                     <input type="text" id="name" name="name" placeholder="Ваше имя"><br><br>
-            
+                
                     <label for="phone">Телефон:</label><br>
-                    <input type="text" id="phone" name="phone" placeholder="+7 (___) ___-__-__"><br><br>
-            
+                    <input type="text" id="phone" name="phone" placeholder="Ваши контакты"><br><br>
+                
                     <label for="question">Ваш вопрос:</label><br>
-                    <textarea id="question" name="question" placeholder="Задайте ваш вопрос"></textarea><br><br>
-            
+                    <textarea id="question" name="question" placeholder="Ваш вопрос"></textarea><br><br>
+                
                     <button type="submit">Отправить</button>
                 </form>
                 <div class="disclaimer">
@@ -406,7 +406,6 @@
                 <p>Мы будем рады узнать ваше мнение</p>
             </div>
 
-        <!-- Форма оставить отзыв -->
         <div class="review-form">
             <form id="reviewForm">
                 <input type="text" id="reviewName" placeholder="Ваше имя" required>
@@ -433,7 +432,6 @@
             </div>
         </div>
 
-        <!-- Отображение отзывов -->
         <div class="review-display">
             <div id="reviews-container" class="reviews-container">
                 <!-- Здесь будут динамически подгружаться .review-item -->
@@ -441,38 +439,44 @@
         </div>
     </section>
 
-    <!-- Модальное окно -->
+    <!-- Модальное окно "Заявка" -->
     <div id="modal" class="modal" style="display: none;">
         <div class="modal-content">
-            <img src="/static/img/module window/close.png" alt="Закрыть" class="close-btn" onclick="closeModal()">
+            <img src="/static/img/module window/close.png" alt="Закрыть" class="close-btn" onclick="closeModal('modal')">
             <p>Заявка успешно отправлена!</p>
             <img src="{{ url_for('static', filename='img/module window/success.png') }}" alt="Галочка" class="modal-icon">
         </div>
     </div>
 
-    <!-- Скрипт модального окна-->
+    <!-- Модальное окно "Отзыв" -->
+    <div id="modal-review" class="modal" style="display: none;">
+        <div class="modal-content">
+            <img src="/static/img/module window/close.png" alt="Закрыть" class="close-btn" onclick="closeModal('modal-review')">
+            <p>Отзыв успешно оставлен!</p>
+            <img src="{{ url_for('static', filename='img/module window/success.png') }}" alt="Галочка" class="modal-icon">
+        </div>
+    </div>
+
+    <!-- Единый скрипт для обоих модальных окон -->
     <script>
-        function showModal() {
-            document.getElementById('modal').style.display = 'block';
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
         }
-    
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
         }
-    
+
         window.onclick = function(event) {
-            const modal = document.getElementById('modal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
+            const modals = ['modal', 'modal-review'];
+            for (const modalId of modals) {
+                const modal = document.getElementById(modalId);
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
             }
         };
     </script>
-    
-    {% with messages = get_flashed_messages() %}
-        {% if 'success' in messages %}
-            <script>showModal();</script>
-        {% endif %}
-    {% endwith %}
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 

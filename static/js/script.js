@@ -53,59 +53,175 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // === 3. Отправка заявления ===
+    const requestForm = document.getElementById('requestForm');
+    if (requestForm) {
+        requestForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
 
-    // === 3. Логика отзывов — загрузка и слайдер ===
+            // Получаем элементы формы
+            const nameInput = document.getElementById('name');
+            const phoneInput = document.getElementById('phone');
+            const questionInput = document.getElementById('question');
+
+            const name = nameInput.value.trim();
+            const phone = phoneInput.value.trim();
+            const question = questionInput.value.trim();
+
+            // Сброс предыдущих ошибок
+            nameInput.style.borderColor = "";
+            phoneInput.style.borderColor = "";
+            document.getElementById('error-name')?.remove();
+            document.getElementById('error-phone')?.remove();
+
+            let hasError = false;
+
+            // Валидация имени
+            if (!name) {
+                nameInput.style.borderColor = "red";
+                const error = document.createElement('div');
+                error.id = 'error-name';
+                error.style.color = 'red';
+                nameInput.parentNode.appendChild(error);
+                hasError = true;
+            }
+
+            // Валидация телефона
+            if (!phone) {
+                phoneInput.style.borderColor = "red";
+                const error = document.createElement('div');
+                error.id = 'error-phone';
+                error.style.color = 'red';
+                phoneInput.parentNode.appendChild(error);
+                hasError = true;
+            }
+
+            // Если есть ошибки — не отправляем
+            if (hasError) return;
+
+            try {
+                const response = await fetch('/send', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        name: name,
+                        phone: phone,
+                        question: question
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    this.reset(); // очищаем форму
+                    showModal('modal'); // показываем модальное окно
+                } else {
+                    alert("Ошибка при отправке заявки");
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Произошла ошибка при отправке заявки.");
+            }
+        });
+    }
+
+    // === 4. Логика отзывов — загрузка и слайдер ===
     async function loadReviews() {
         try {
             const res = await fetch('/get-reviews');
+    
+            // Проверка успешности запроса
+            if (!res.ok) {
+                console.error("Ошибка HTTP при загрузке отзывов:", res.status);
+                return;
+            }
+    
             const reviews = await res.json();
+    
+            // Проверка, что пришёл массив
+            if (!Array.isArray(reviews)) {
+                console.error("Неверный формат данных: ожидается массив");
+                return;
+            }
+    
             const container = document.getElementById('reviews-container');
             if (!container) return; // Защита от отсутствия контейнера
             container.innerHTML = '';
-
-            reviews.forEach((review, index) => {
+    
+            // Флаг для активного слайда
+            let firstItem = true;
+    
+            reviews.forEach((review) => {
+                // Проверка полей каждого отзыва
+                if (
+                    typeof review !== 'object' ||
+                    !('name' in review) ||
+                    !('comment' in review) ||
+                    !('rating' in review)
+                ) {
+                    console.warn("Пропущен некорректный отзыв:", review);
+                    return; // пропускаем этот отзыв
+                }
+    
+                // Приведение рейтинга к числу
+                const rating = parseInt(review.rating, 10);
+                if (isNaN(rating) || rating < 1 || rating > 5) {
+                    console.warn("Некорректный рейтинг в отзыве:", review);
+                    return; // пропускаем
+                }
+    
+                // Создание элемента отзыва
                 const div = document.createElement('div');
                 div.className = 'review-item';
-                if (index === 0) div.classList.add('active');
-
+                if (firstItem) {
+                    div.classList.add('active');
+                    firstItem = false;
+                }
+    
                 // Звезды
                 const stars = document.createElement('div');
                 stars.className = 'stars';
                 for (let i = 0; i < 5; i++) {
                     const img = document.createElement('img');
-                    img.src = i < review.rating
+                    img.src = i < rating
                         ? "/static/img/application-review/star-filled.png"
                         : "/static/img/application-review/star-empty.png";
                     img.alt = "звезда";
                     img.className = "star-img";
                     stars.appendChild(img);
                 }
-
+    
                 // Текст отзыва
                 const text = document.createElement('p');
                 text.className = 'review-text';
                 text.textContent = review.comment;
-
+    
                 // Автор
                 const author = document.createElement('div');
                 author.className = 'review-author';
+    
                 const avatar = document.createElement('img');
                 avatar.src = "/static/img/application-review/avatar.png";
                 avatar.alt = "Автор";
                 avatar.className = "avatar";
+    
                 const span = document.createElement('span');
                 span.textContent = review.name;
+    
                 author.appendChild(avatar);
                 author.appendChild(span);
-
+    
                 // Сборка
                 div.appendChild(stars);
                 div.appendChild(text);
                 div.appendChild(author);
                 container.appendChild(div);
             });
-
+    
             startCarousel(); // запуск слайдера
+    
         } catch (err) {
             console.error("Ошибка загрузки отзывов:", err);
         }
@@ -113,7 +229,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function startCarousel() {
         const reviews = document.querySelectorAll('.review-item');
-        if (reviews.length <= 1) return; // Не нужен слайдер, если 1 или меньше отзывов
+        if (reviews.length <= 1) return;
 
         let index = 0;
 
@@ -124,7 +240,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 6000);
     }
 
-    // Отправка отзыва
     const reviewForm = document.getElementById('reviewForm');
     if (reviewForm) {
         reviewForm.addEventListener('submit', async function (e) {
@@ -154,13 +269,13 @@ document.addEventListener("DOMContentLoaded", function () {
             const result = await response.json();
             if (result.status === 'success') {
                 this.reset();
-                loadReviews(); // обновляем список отзывов
+                loadReviews();
+                showModal('modal-review');
             } else {
                 alert("Ошибка при сохранении отзыва");
             }
         });
     }
 
-    // Запуск загрузки отзывов
     loadReviews();
 });
