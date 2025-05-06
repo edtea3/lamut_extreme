@@ -1,0 +1,1043 @@
+/* Сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    background-color: #000;
+    overflow-x: hidden;
+}
+
+/* Шапка */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+header.hidden {
+    transform: translateY(-100%);
+}
+
+.logo-container {
+    margin-right: auto;
+    display: flex;      
+    align-items: center; 
+    width: fit-content; 
+    flex-shrink: 0;
+    flex-grow: 0; 
+    margin: 0;
+    padding: 0;
+}
+
+.logo-container img {
+    width: 102.84px;
+    height: 120px;
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.navbar {
+    position: absolute;
+    top: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    transition: 
+        color 0.3s ease,
+        transform 0.3s ease;
+    display: inline-block;
+}
+
+.nav-links li a:hover {
+    color: #CDB18B;
+    transform: scale(1.1);
+}
+
+.nav-links li a:active {
+    transform: scale(0.97);
+}
+
+
+/* Главный блок */
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('../img/background/first.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.content {
+    position: absolute;
+    top: 110px;
+    right: 60px;
+    max-width: 803px;
+    text-align: right;
+}
+
+.highlight {
+    color: #CDB18B;
+}
+
+.content h1 {
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 96px;
+    font-weight: 400;
+    color: #fff;
+    margin-top: 0px;   
+    margin-bottom: 0px;
+}
+
+.content h2 {
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 64px;
+    font-weight: 400;
+    color: #fff;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.content p {
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.1;
+    color: #fff;
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+.cta-button {
+    background-color: #CDB18B;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: #ffffff;
+    margin-top: 100px;
+    margin-bottom: 0px;
+    padding: 25px 75px;
+    border: none;
+    border-radius: 38px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    transform: scale(1);
+}
+
+.cta-button:hover {
+    background-color: #CDB18B;
+    transform: scale(1.05);
+}
+
+.cta-button:active {
+    transform: scale(0.97);
+}
+
+
+/* Секция "Об охотхозяйстве" */
+.about-hunting-farm {
+    background-color: #000000;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.title-about-hunting-farm {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700px;
+    margin-bottom: 50px;
+}
+
+.hunting-farm-layout {
+    display: flex;
+    justify-content: center;       
+    align-items: center;           
+    gap: 197px;                    
+}
+
+.image-column-left {
+    display: flex;          
+    flex-direction: column;
+    gap: 80px;
+    border-right: 2px solid #fff; 
+    padding-right: 67px; 
+}
+
+.image-column-right {
+    display: flex;          
+    flex-direction: column;
+    gap: 80px;
+    border-left: 2px solid #fff; 
+    padding-left: 67px; 
+}
+
+.image-column-left img,
+.image-column-right img {
+    width: 292px;    
+    height: 335px;
+}
+
+.content-column {
+    max-width: 396px;       
+    flex: 1;                
+    display: flex;
+    flex-direction: column;           
+    align-items: center;        
+    text-align: center;   
+    font-size: 16px;
+}
+
+.info-block {
+    padding: 15px 0px;
+}
+
+.info-block h3 {
+    font-weight: 400px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.info-block p {
+    font-weight: 200px;
+    line-height: 2.5;
+    max-width: 350px;
+}
+
+.info-block ul {
+    list-style-type: none;
+    font-weight: 200px;
+    line-height: 2.5;
+}
+
+
+/* Секция "Программа тура" */
+.tour-program {
+    background-color: #000000;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    margin-top: 100px;
+    color: #000;
+}
+
+.title-tour-program {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%); 
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    z-index: 20;
+}
+
+.program-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+}
+
+.background {
+    position: relative;
+    width: 1580;
+    height: 428px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.icons {
+    position: absolute;
+    top: 27%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.icons img {
+    width: 1200px;
+    height: 33px;
+}
+
+.left-column, .center-column, .right-column {
+    position: absolute;
+    top: 40%;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+    width: 30%;
+}
+
+.left-column {
+    left: 4.8%;
+}
+
+.center-column {
+    left: 35%;
+}
+
+.right-column {
+    right: 4.2%;
+}
+
+.step-content {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center;
+}
+
+.step-content p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.additional-hunting {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+
+/* Секция "Условия проживания" */
+.living-conditions {
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    margin-top: 50px;
+}
+
+.conditions-layout {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    flex-wrap: wrap;
+    margin-top: 83px;
+}
+
+.condition-circle {
+    position: relative;
+    width: 350px;
+    height: 350px;
+}
+
+.ellipse img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.circle-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 80%;
+    z-index: 2;
+}
+
+.title-living-conditions {
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.circle-content h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.circle-content p {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+
+/* Секция "Включено/Не включено в стоимость" */
+.included-excluded {
+    position: relative;
+    overflow: hidden;
+    height: 1900px;      
+    margin: 0 auto;      
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 50px;
+}
+
+.background-image img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 0;
+}
+
+.content-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    color: white;
+}
+
+.included-column, .excluded-column {
+    margin-top: 100px;
+    width: 100%;
+    text-align: center;
+}
+
+.included-column ul,
+.excluded-column ul {
+    list-style: none;       
+    padding: 0;             
+    margin: 0 auto;
+    line-height: 1.7;         
+}
+
+.included-excluded .header {
+    font-size: 25px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.included-excluded .header img {
+    font-size: 18px;
+    font-weight: 300;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.peculiarities {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.title h1 {
+    font-size: 40px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 50px;
+}
+
+.first, .second, .third, .fourth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.first img, .second img, .third img, .fourth img {
+    width: 37px;
+    height: 37px;
+    margin-right: 20px;
+}
+
+.first p, .second p, .third p, .fourth p {
+    font-size: 18px;
+    color: white;
+    line-height: 1.6;
+    text-align: left;
+    max-width: 700px;
+    font-weight: 350;
+}
+
+.first p, .second p, .third p, .fourth p {
+    margin: 0;
+}
+
+.container {
+    margin-top: 150px;
+    display: flex;
+    gap: 60px;
+    color: #000;
+    justify-content: center;
+}
+
+.card {
+    background-image: url("../img/peculiarity/background.png"); 
+    border-radius: 20px;
+    padding: 30px;
+    width: 480px;
+    height: 500px;
+    flex-direction: column;     
+    justify-content: center;    
+    align-items: center;        
+    text-align: left;
+}
+
+.card h2 {
+    font-size: 30px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.card ul {
+    list-style: none;
+    line-height: 1.5;
+    padding-left: 0;
+}
+
+.card li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card.condition li {
+    margin-bottom: 50px;
+}
+
+.card.condition ul {
+    margin-top: 80px;
+}
+
+.bullet {
+    width: 50px;
+    height: 50px;
+    margin-right: 25px;
+}
+
+/* Секция "Заявка и отзыв" */
+.application-review {
+    font-family: 'Montserrat', sans-serif;
+    position: relative; /* Для возможности добавления других элементов поверх фона */
+    background-image: url('../img/background/third.png'); /* Путь к фоновому изображению */
+    background-size: cover; /* Изображение будет заполнять всю секцию без дисторсии */
+    background-position: center; /* Центрируем изображение */
+    background-repeat: no-repeat; /* Фон не повторяется */
+    min-height: 1400px; /* Минимальная высота секции */
+    width: 100%;       /* На всю ширину экрана */
+}
+
+.application {
+    position: relative;
+    width: 1826px;
+    height: 456px;
+    margin: 0 auto;
+    background-image: url('../img/application-review/white-frame.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    box-sizing: border-box;   
+    overflow: visible;
+    margin-bottom: 123px;
+}
+
+.application .left-section {
+    margin-left: 20px;
+}
+
+.application .left-section h2 {
+    font-size: 42px;
+}
+
+.application .left-section p {
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+.application .form-container {
+    text-align: center; /* Выравнивание по центру */
+    margin-top: 20px; /* Отступ сверху */
+    margin-left: 50px;
+}
+
+.application .form-container label {
+    display: none; /* Можно скрыть, если текст в placeholder */
+}
+
+.application .form-container input::placeholder,
+.application .form-container textarea::placeholder {
+    color: #ffffff;
+}
+
+.application .form-container input,
+.application .form-container textarea {
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: -45px;
+    width: 288px;
+    height: 75px;
+    padding: 15px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 38px;
+    display: block;
+    background-color: transparent;
+    /* Отключение автозаполнения стилей */
+    transition: background-color 0s ease-in-out 0s;
+}
+
+.application .form-container input:-webkit-autofill,
+.application .form-container input:-webkit-autofill:hover,
+.application .form-container input:-webkit-autofill:focus,
+.application .form-container input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    caret-color: #ffffff !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+@supports (-moz-appearance: none) {
+    .application .form-container input:-moz-autofill {
+        background-color: transparent !important;
+    }
+}
+
+.application .form-container button {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #CDB18B; /* Коричнево-жёлтый фон */
+    color: white; /* Белый текст */
+    border: none; /* Убираем границу */
+    border-radius: 38px; /* Круглые углы */
+    font-size: 18px; /* Размер текста */
+    font-weight: 500;
+    margin-top: -45px;
+    cursor: pointer; /* Указатель мыши при наведении */
+    width: 288px; /* Ширина поля */
+    height: 75px;
+
+    /* Добавляем анимацию */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    transform: scale(1); /* Начальный масштаб */
+}
+
+.application .form-container button:hover {
+    background-color: #CDB18B; /* Цвет фона остаётся тем же или можно чуть изменить */
+    transform: scale(1.05); /* Лёгкое увеличение */
+}
+
+.application .form-container button:active {
+    transform: scale(0.97); /* Лёгкое уменьшение при клике */
+}
+
+.application .form-container .disclaimer {
+    font-size: 11px; /* Маленький шрифт */
+    color: rgb(255, 255, 255);
+    margin-top: 10px; /* Отступ сверху */
+    text-align: center; /* Выравнивание по центру */
+}
+
+.application .highlight {
+    text-decoration: none; /* Убираем подчеркивание, если это ссылка */
+}
+
+.application .right-section {
+    margin-left: 700px;
+}
+
+.application .contact-info h2 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.application .contact-info p {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.application .contact-info p:last-child {
+    margin-bottom: 0;
+}
+
+.application .right-section h2 {
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.application .right-section p {
+    font-size: 18px;
+    font-weight: 350;
+}
+
+.modal {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #000000;
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 40px 20px 20px;
+    border-radius: 28px;
+    width: 550px;
+    height: 150px;
+    position: relative;
+    text-align: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    border: 1px solid #DBDADA;
+    margin-top: 300px;
+}
+
+.modal-content p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.modal-icon {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 47px;
+    height: 47px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 19px;
+    width: 18px; /* Размер иконки */
+    height: 18px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.close-btn:hover {
+    opacity: 0.7; /* Легкое затемнение при наведении */
+}
+
+.review {
+    color: #000;
+    width: 1826px; /* ширина картинки */
+    height: 539px; /* высота картинки */
+    background-image: url('../img/application-review/background.png');
+    background-size: cover; /* или contain, в зависимости от задачи */
+    background-position: center;
+    position: relative; /* для позиционирования дочерних элементов */
+    margin: 0 auto; /* центрирование, если нужно */
+    display: flex;
+    align-items: center;
+    padding: 40px;
+}
+
+.review .left-section {
+    position: absolute;
+    width: 388px;
+    height: 184px;
+    margin-left: 52px;
+}
+
+.review .left-section h2 {
+    font-size: 42px;
+}
+
+.review .left-section p {
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+.review-form {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    max-width: 456px;           
+    max-height: 459px;
+    margin-top: 40px;
+    margin-left: 508px;
+}
+
+.review-form form {
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.review-form input[type="text"],
+.review-form textarea {
+    color: #000000;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 15px;
+    border: 2px solid #000000;
+    border-radius: 38px;
+    background-color: transparent;
+    transition: background-color 0s ease-in-out 0s;
+}
+
+.review-form input::placeholder,
+.review-form textarea::placeholder {
+    color: #000000;
+}
+
+/* Отключение автозаполнения браузером */
+.review-form input:-webkit-autofill,
+.review-form input:-webkit-autofill:hover,
+.review-form input:-webkit-autofill:focus,
+.review-form input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    caret-color: #000000 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+@supports (-moz-appearance: none) {
+    .review-form input:-moz-autofill {
+        background-color: transparent !important;
+    }
+}
+
+.review-form textarea {
+    resize: vertical;
+    min-height: 100px;
+    height: auto;
+    width: 455px;
+    height: 204px;
+}
+
+.rating-stars {
+    flex-direction: row-reverse;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    font-size: 0; /* Убираем возможный текст */
+}
+
+.rating-stars input {
+    display: none; /* Скрываем оригинальные радиокнопки */
+}
+
+.rating-stars label {
+    width: 32px; /* Размер звезды */
+    height: 32px;
+    background-image: url('../img/application-review/star-empty.png'); /* Путь к пустой звезде */
+    background-size: cover;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.rating-stars label:hover,
+.rating-stars label:hover ~ label {
+    transform: scale(1.2); /* Увеличение при наведении */
+}
+
+.rating-stars input:checked + label {
+    background-image: url('../img/application-review/star-filled.png'); /* Заполненная звезда */
+}
+
+.rating-stars input:checked ~ label {
+    background-image: url('../img/application-review/star-filled.png');
+}
+
+.review-form button[type="submit"] {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #CDB18B;
+    color: white;
+    border: none;
+    border-radius: 38px;
+    font-size: 18px;
+    font-weight: 500;
+    width: 455px;
+    height: 55.25px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    transform: scale(1);
+}
+
+.review-form button:hover {
+    background-color: #CDB18B;
+    transform: scale(1.05);
+}
+
+.review-form button:active {
+    transform: scale(0.97);
+}
+
+.review-form .disclaimer {
+    font-size: 11px;
+    color: #000000;
+    margin-top: 19.75px;
+    text-align: center;
+}
+
+.review-form .highlight {
+    text-decoration: none; /* Убираем подчеркивание, если это ссылка */
+    color: #9F6311;
+}
+
+.review-display {
+    position: relative; /* Базовая точка для абсолютного позиционирования */
+    margin-left: 250px;
+    max-width: 394px;
+    max-height: 435px;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/application-review/review-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 30px;
+    box-sizing: border-box;
+    color: #fff;
+    overflow: hidden;
+}
+
+.stars {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+}
+
+.star-img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+.review-text {
+    color: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.4;
+    max-width: 90%; /* Не больше 80% от контейнера */
+    max-height: 60%; /* Ограничиваем высоту, если текст длинный */
+    width: max-content; /* Подстраивается под длину текста, если он короткий */
+    overflow-y: auto; /* Добавляем скролл, если текст не помещается */
+    padding: 0 10px;
+}
+
+.review-author {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.avatar {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.review-author span {
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+}
+
+/* Анимация */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in-up-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in-left-active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.fade-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in-right-active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.fade-in-down {
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in-down-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animated {
+    will-change: opacity, transform;
+}
+
+
+
+
+

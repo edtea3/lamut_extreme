@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Lamut extreme</title>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Логотип Ламут Экстрем">
+        </div>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#about-hunting-farm">Тур</a></li>
+                <li><a href="#review">Отзывы</a></li>
+                <li><a href="#application">Контакты</a></li>
+                <li>
+                    <a href="https://drive.google.com/drive/folders/1xXUOO6dJEhT6WYVMAfoxpdNtJgVWNS82?usp=sharing" target="_blank">
+                        Галерея
+                    </a>
+                </li>
+                <li><a href="#application">Заявка</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Главный блок с текстом и кнопкой -->
+    <section class="hero-section">
+        <div class="content fade-in-right">
+            <h1>Открой для себя <span class="highlight">НОВОЕ</span></h1>
+            <h2><span class="highlight">Охота</span> на верхоянского <span class="highlight">снежного барана</span><h2>
+            <p>
+                Для каждого охотника наверное важно то, что он испытывает от процесса охоты: единение с природой, эмоции, впечатления, опыт и конечно же результат — желанный трофей. И всё это можно получить у нас
+            </p>
+            <a href="#application">
+                <button class="cta-button">
+                    Оставить заявку
+                </button>
+            </a>
+        </div>
+    </section>
+
+    <!-- Секция "Об охотхозяйстве" -->
+    <section id="about-hunting-farm" class="about-hunting-farm">
+        <div class="title-about-hunting-farm fade-in-up">
+            <h2>Об охотхозяйстве</h2>
+        </div>        
+
+        <div class="hunting-farm-layout">   
+            <!-- Левая колонка с изображениями -->
+            <div class="image-column-left fade-in-left">
+                <img src="{{ url_for('static', filename='img/hunting farm/left/image.png') }}" alt="Изображение 1">
+                <img src="{{ url_for('static', filename='img/hunting farm/left/image-1.png') }}" alt="Изображение 2">
+                <img src="{{ url_for('static', filename='img/hunting farm/left/image-2.png') }}" alt="Изображение 3">
+            </div>
+
+            <!-- Центральная колонка -->
+            <div class="content-column fade-in-up">
+                <div class="info-block">
+                    <img src="{{ url_for('static', filename='/img/hunting farm/icons/location.png') }}" alt="Локация">
+                    <h3>Расположение</h3>
+                    <p>Республика Саха (Якутия), Кобяйский улус, Верхоянский хребет, бассейн реки Эчий и Нера</p>
+                </div>
+
+                <div class="info-block">
+                    <img src="{{ url_for('static', filename='/img/hunting farm/icons/height.png') }}" alt="Высота">
+                    <h3>Высота</h3>
+                    <p>1000–1500 метров над уровнем моря</p>
+                </div>
+
+                <div class="info-block">
+                    <img src="{{ url_for('static', filename='/img/hunting farm/icons/peculiarities.png') }}" alt="Особенности">
+                    <h3>Особенности</h3>
+                    <ul class="peculiarities-list">
+                        <li>Высокая плотность снежных баранов</li>
+                        <li>Профессиональное сопровождение</li>
+                        <li>Современное техническое оснащение</li>
+                        <li>Использование охотничьих лаек</li>
+                    </ul>
+                </div>
+
+                <div class="info-block">
+                    <img src="{{ url_for('static', filename='/img/hunting farm/icons/trophies.png') }}" alt="Трофей">
+                    <h3>Трофей</h3>
+                    <p>Рога длиной от 80 до 105 см</p>
+                </div>
+
+                <div class="info-block">
+                    <img src="{{ url_for('static', filename='/img/hunting farm/icons/period.png') }}" alt="Период">
+                    <h3>Период охоты</h3>
+                    <p>С 1 августа до 30 ноября</p>
+                </div>
+
+                <div class="info-block">
+                    <img src="{{ url_for('static', filename='/img/hunting farm/icons/achievements.png') }}" alt="Достижения">
+                    <h3>Достижения</h3>
+                    <ul class="achievements-list">
+                        <li>“Якутский снежный баран” 2018 г. — Золотая медаль</li>
+                        <li>“Якутский снежный баран” 2023 г. — Золотая медаль</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Правая колонка с изображениями -->
+            <div class="image-column-right fade-in-right">
+                <img src="{{ url_for('static', filename='/img/hunting farm/right/image.png') }}" alt="Изображение 4">
+                <img src="{{ url_for('static', filename='/img/hunting farm/right/image-1.png') }}" alt="Изображение 5">
+                <img src="{{ url_for('static', filename='/img/hunting farm/right/image-2.png') }}" alt="Изображение 6">
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Программа тура" -->
+    <section class="tour-program fade-in-right">
+        <div class="title-tour-program">
+            <h2>Программа тура</h2>
+        </div>
+
+        <div class="program-layout">
+            <!-- Виджет -->
+            <div class="background">
+                <img src="{{ url_for('static', filename='/img/tour program/background.png') }}">
+            </div>
+
+            <!-- Иконки -->
+            <div class="icons">
+                <img src="{{ url_for('static', filename='/img/tour program/icons.png') }}">
+            </div>
+
+            <!-- Левая колонка текста -->
+            <div class="left-column">
+                <div class="step-content">
+                    <p>Встреча в аэропорту г. Якутск</p>
+                    <p>Трансфер до с. Себян-Кюель</p>
+                    <p>Трансфер до охотничьего лагеря</p>
+                    <p>Размещение в лагере</p>
+                </div>
+            </div>
+
+            <!-- Центральная колонка текста -->
+            <div class="center-column">
+                <div class="step-content">
+                    <p>Ежедневная охота в горах</p>
+                    <p>Поиск и скрадывание зверя с использованием якутских лаек</p>
+                    <p>Передвижение на снегоходах (минимальные пешие перемещения)</p>
+                    <p>Обеды в полевых условиях</p>
+                    <p>Вечерние обсуждения результатов с гидами</p>
+                    <p>Дополнительные виды охоты (по желанию):</p>
+                    <p>На белых куропаток</p>
+                    <p>Подледная рыбалка на арктического гольца</p>
+                </div>
+            </div>
+
+            <!-- Правая колонка текста -->
+            <div class="right-column">
+                <div class="step-content">
+                    <p>Консервация и упаковка трофеев</p>
+                    <p>Возвращение в г. Якутск</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Условия проживания" -->
+    <section class="living-conditions fade-in-up">
+        <div class="title-living-conditions">
+            <h2>Условия проживания</h2>
+        </div>
+
+        <div class="conditions-layout">
+            <!-- Круг 1: Отопление -->
+            <div class="condition-circle fade-in-left">
+                <div class="ellipse">
+                    <img src="{{ url_for('static', filename='/img/living condition/ellipse.png') }}">
+                </div>
+
+                <div class="circle-content">
+                    <h3>Отопление</h3>
+                    <p>-Печное</p>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Круг 2: Удобства -->
+            <div class="condition-circle fade-in-up">
+                <div class="ellipse">
+                    <img src="{{ url_for('static', filename='/img/living condition/ellipse.png') }}">
+                </div>
+
+                <div class="circle-content">
+                    <h3>Удобства</h3>
+                    <p>-Туалет</p>
+                    <p>-Электрогенератор</p>
+                    <p>-Спутниковый телефон</p>
+                    <p>-УКВ связь</p>
+                </div>
+            </div>
+
+            <!-- Круг 3: Проживание -->
+            <div class="condition-circle fade-in-right">
+                <div class="ellipse">
+                    <div class="animated-border"></div>
+                    <img src="{{ url_for('static', filename='/img/living condition/ellipse.png') }}">
+                </div>
+
+                <div class="circle-content">
+                    <h3>Проживание</h3>
+                    <p>-Охотничий домик (4-местный)</p>
+                    <p>-Палаточный лагерь</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Хвост" -->
+    <section class="included-excluded">
+        <div class="background-image">
+            <img src="{{ url_for('static', filename='/img/background/second.png') }}" alt="Фон горы">
+        </div>
+
+        <div class="content-container">
+            <!-- Левая колонка: Включено в стоимость -->
+            <div class="included-column fade-in-left">
+                <div class="header">
+                    <img src="{{ url_for('static', filename='/img/peculiarity/off.png') }}">
+                    <h2>Включено в стоимость</h2>
+                </div>
+                <ul>
+                    <li>Организация охоты в течение 7–10 дней</li>
+                    <li>Разрешительные документы</li>
+                    <li>Егерское сопровождение (1 егерь на 1 охотника)</li>
+                    <li>Трансфер из г. Якутск до места охоты и обратно</li>
+                    <li>Проживание (охотничьи домики/палатки)</li>
+                    <li>3-разовое питание</li>
+                    <li>Трофей</li>
+                    <li>Первичная обработка трофея</li>
+                    <li>Транспортное обслуживание (снегоходы)</li>
+                    <li>Обеспечение безопасности</li>
+                </ul>
+            </div>
+
+            <!-- Правая колонка: Не включено в стоимость -->
+            <div class="excluded-column fade-in-right">
+                <div class="header">
+                    <img src="{{ url_for('static', filename='/img/peculiarity/on.png') }}">
+                    <h2>Не включено в стоимость</h2>
+                </div>
+                <ul>
+                    <li>Дополнительный трофей (350 тыс. рублей)</li>
+                    <li>Пребывание сопровождающего лица (300 тыс. рублей)</li>
+                    <li>Авиаперелет до г. Якутск</li>
+                    <li>Алкоголь, сигареты</li>
+                    <li>Проживание и питание в г. Якутск</li>
+                    <li>Медицинская страховка</li>
+                    <li>Отправка трофея по месту жительства</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="peculiarities fade-in-up">
+            <div class="title">
+                <h1>Особенности охоты</h1>
+            </div>
+
+            <div class="first">
+                <img src="{{ url_for('static', filename='/img/peculiarity/star.png') }}">
+                <p><strong>Минимальные пешие перемещения</strong> благодаря использованию снегоходов</p>
+            </div>
+
+            <div class="second">
+                <img src="{{ url_for('static', filename='/img/peculiarity/star.png') }}">
+                <p><strong>Не требуется специальная подготовка</strong> <strong>или отличная физическая форма.</strong>
+                    Благодаря снегоходам и помощи опытных егерей, даже люди старшего
+                    возраста могут комфортно участвовать в охоте</p>
+            </div>
+
+            <div class="third">
+                <img src="{{ url_for('static', filename='/img/peculiarity/star.png') }}">
+                <p>Возможность совмещения с подледной рыбалкой на </strong>арктического
+                    гольца</strong> и <strong>охотой на белую куропатку</strong></p>
+            </div>
+
+            <div class="fourth">
+                <img src="{{ url_for('static', filename='/img/peculiarity/star.png') }}">
+                <p><strong>Высокая результативность охоты</strong> благодаря профессионализму гидов,
+                    использованию специально обученных охотничьих якутских лаек и
+                    высокой плотности снежных баранов</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="card cost fade-in-left">
+                <h2>Стоимость тура</h2>
+                <ul>
+                    <li>
+                        <img src="{{ url_for('static', filename='/img/peculiarity/snipe_1.png') }}" alt="Значок" class="bullet">
+                        <p><strong>Для 1 охотника (1 трофей)</strong><br>1 300 тыс. рублей</p>
+                    </li>
+                    <li>
+                        <img src="{{ url_for('static', filename='/img/peculiarity/snipe_1.png') }}" alt="Значок" class="bullet">
+                        <p><strong>Для 2 охотников (2 трофея)</strong><br>1 840 тыс. рублей</p>
+                    </li>
+                    <li>
+                        <img src="{{ url_for('static', filename='/img/peculiarity/snipe_1.png') }}" alt="Значок" class="bullet">
+                        <p><strong>Для 3 охотников</strong><br>2 300 тыс. рублей</p>
+                    </li>
+                    <li>
+                        <img src="{{ url_for('static', filename='/img/peculiarity/snipe_1.png') }}" alt="Значок" class="bullet">
+                        <p><strong>Для 4 охотников</strong><br>2 760 тыс. рублей</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="card condition fade-in-up">
+                <h2>Условия<br>бронирования</h2>
+                <ul>
+                    <li>
+                        <img src="{{ url_for('static', filename='/img/peculiarity/snipe_2.png') }}" alt="Значок" class="bullet">
+                        <p><strong>Предоплата</strong><br>50% от стоимости тура</p>
+                    </li>
+                    <li>
+                        <img src="{{ url_for('static', filename='/img/peculiarity/snipe_2.png') }}" alt="Значок" class="bullet">
+                        <p><strong>Остаток<br></strong>оплачивается по завершении охоты</strong></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="card what-to-take fade-in-right">
+                <h2>Что взять с собой</h2>
+                <ul>
+                    <li>
+                        <img src="{{ url_for('static', filename='/img/peculiarity/snipe_3.png') }}" alt="Значок" class="bullet">
+                        <p>Нарезное оружие + боеприпасы</p>
+                    </li>
+                    <li>
+                        <img src="{{ url_for('static', filename='/img/peculiarity/snipe_3.png') }}" alt="Значок" class="bullet">
+                        <p>Оптический прицел и дальномер</p>
+                    </li>
+                    <li>
+                        <img src="{{ url_for('static', filename='/img/peculiarity/snipe_3.png') }}" alt="Значок" class="bullet">
+                        <p>Теплую одежду и обувь</p>
+                    </li>
+                    <li>
+                        <img src="{{ url_for('static', filename='/img/peculiarity/snipe_3.png') }}" alt="Значок" class="bullet">
+                        <p>Спальный мешок</p>
+                    </li>
+                    <li>
+                        <img src="{{ url_for('static', filename='/img/peculiarity/snipe_3.png') }}" alt="Значок" class="bullet">
+                        <p>Индивидуальную аптечку</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Заявка и отзыв" -->
+    <section class="application-review">
+        <div id="application" class="application fade-in-right">
+            <div class="left-section">
+                <h2>Оставьте заявку<br>на бесплатную<br>консультацию</h2>
+                <p>Мы перезвоним вам в<br>ближайшее время</p>
+            </div>
+
+            <div class="form-container">
+                <form action="/send" method="post">
+                    <label for="name">Ваше имя:</label><br>
+                    <input type="text" id="name" name="name" placeholder="Ваше имя"><br><br>
+            
+                    <label for="phone">Телефон:</label><br>
+                    <input type="text" id="phone" name="phone" placeholder="+7 (___) ___-__-__"><br><br>
+            
+                    <label for="question">Ваш вопрос:</label><br>
+                    <textarea id="question" name="question" placeholder="Задайте ваш вопрос"></textarea><br><br>
+            
+                    <button type="submit">Отправить</button>
+                </form>
+                <div class="disclaimer">
+                    Нажимая кнопку, вы даёте согласие<br>на <a href="docs/privacy-policy.pdf" download class="highlight">обработку персональных данных</a>
+                </div>
+            </div>
+            
+            <div class="right-section">
+                <div class="contact-info">
+                    <h2>Контакты</h2>
+                    <p><strong>Телефон</strong></p>
+                    <p>8-967-624-44-73</p>
+                    <p>8-962-737-68-21</p>
+                    <p>8-962-736-58-33</p>
+                    <p><strong>Email</strong></p>
+                    <p>efim.sebyan@mail.ru</p>
+                    <p>edpavlov2005@gmail.com</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="review" class="review fade-in-left">
+            <div class="left-section">
+                <h2>Что пишут наши участники</h2>
+                <p>Мы будем рады узнать ваше мнение</p>
+            </div>
+
+            <div class="review-form">
+                <form action="/submit-review" method="post">
+                    <input type="text" name="name" placeholder="Ваше имя" required>
+                    <textarea name="comment" placeholder="Ваш отзыв" required></textarea>
+                    <div class="rating-stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5" title="5 звезд"></label>
+                    
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4" title="4 звезды"></label>
+                    
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3" title="3 звезды"></label>
+                    
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2" title="2 звезды"></label>
+                    
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1" title="1 звезда"></label>
+                    </div>
+                    <button type="submit">Оставить отзыв</button>
+                </form>
+                <div class="disclaimer">
+                    Нажимая кнопку, вы даёте согласие на <a href="docs/privacy-policy.pdf" download class="highlight">обработку персональных данных</a>
+                </div>
+            </div>
+
+            <div class="review-display">
+                <div id="reviews-container" class="review-item">
+
+                    <div class="stars">
+                        <img src="{{ url_for('static', filename='/img/application-review/star-filled.png') }}" alt="звезда" class="star-img">
+                        <img src="{{ url_for('static', filename='/img/application-review/star-filled.png') }}" alt="звезда" class="star-img">
+                        <img src="{{ url_for('static', filename='/img/application-review/star-filled.png') }}" alt="звезда" class="star-img">
+                        <img src="{{ url_for('static', filename='/img/application-review/star-filled.png') }}" alt="звезда" class="star-img">
+                        <img src="{{ url_for('static', filename='/img/application-review/star-filled.png') }}" alt="звезда" class="star-img">
+                    </div>
+
+                    <p class="review-text">
+                        Был в гостях у ребят в 2021 году, до этого ездил на охоту в Томпонский район.
+                        Какие плюсы. Первое. Доступная транспортная схема, до обеда вылетаешь на рейсовом
+                        самолете и вечером того же дня сидишь пьешь чай в охотничьей избушке. Второе.
+                        Комфортабельный теплый дом, комфортный отдых. Третье. Удобство передвижения
+                        по охотоводам, везде на буранах. Ну и гарантированная добыча трофея. Классные
+                        обученные собаки по следам быстро находят добычу. Ранее в горах Хандыги надо
+                        было в день по 5-6 часов ходить по горам и не увидеть даже следы. Общее
+                        впечатление - ВИП охота с гарантированным результатом и морем эмоций и впечатлений. Рекомендую!
+                    </p>
+
+                    <div class="review-author">
+                        <img src="{{ url_for('static', filename='/img/application-review/avatar.png') }}" alt="Автор отзыва" class="avatar">
+                        <span>Джулустан</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <img src="/static/img/module window/close.png" alt="Закрыть" class="close-btn" onclick="closeModal()">
+            <p>Заявка успешно отправлена!</p>
+            <img src="{{ url_for('static', filename='img/module window/success.png') }}" alt="Галочка" class="modal-icon">
+        </div>
+    </div>
+
+    <!-- Скрипт модального окна-->
+    <script>
+        function showModal() {
+            document.getElementById('modal').style.display = 'block';
+        }
+    
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if 'success' in messages %}
+            <script>showModal();</script>
+        {% endif %}
+    {% endwith %}
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
+
+
+
