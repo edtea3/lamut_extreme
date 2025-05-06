@@ -406,60 +406,37 @@
                 <p>Мы будем рады узнать ваше мнение</p>
             </div>
 
-            <div class="review-form">
-                <form action="/submit-review" method="post">
-                    <input type="text" name="name" placeholder="Ваше имя" required>
-                    <textarea name="comment" placeholder="Ваш отзыв" required></textarea>
-                    <div class="rating-stars">
-                        <input type="radio" id="star5" name="rating" value="5">
-                        <label for="star5" title="5 звезд"></label>
-                    
-                        <input type="radio" id="star4" name="rating" value="4">
-                        <label for="star4" title="4 звезды"></label>
-                    
-                        <input type="radio" id="star3" name="rating" value="3">
-                        <label for="star3" title="3 звезды"></label>
-                    
-                        <input type="radio" id="star2" name="rating" value="2">
-                        <label for="star2" title="2 звезды"></label>
-                    
-                        <input type="radio" id="star1" name="rating" value="1">
-                        <label for="star1" title="1 звезда"></label>
-                    </div>
-                    <button type="submit">Оставить отзыв</button>
-                </form>
-                <div class="disclaimer">
-                    Нажимая кнопку, вы даёте согласие на <a href="docs/privacy-policy.pdf" download class="highlight">обработку персональных данных</a>
+        <!-- Форма оставить отзыв -->
+        <div class="review-form">
+            <form id="reviewForm">
+                <input type="text" id="reviewName" placeholder="Ваше имя" required>
+                <textarea id="reviewComment" placeholder="Ваш отзыв" required></textarea>
+
+                <div class="rating-stars">
+                    <input type="radio" id="star5" name="rating" value="5">
+                    <label for="star5"></label>
+                    <input type="radio" id="star4" name="rating" value="4">
+                    <label for="star4"></label>
+                    <input type="radio" id="star3" name="rating" value="3">
+                    <label for="star3"></label>
+                    <input type="radio" id="star2" name="rating" value="2">
+                    <label for="star2"></label>
+                    <input type="radio" id="star1" name="rating" value="1">
+                    <label for="star1"></label>
                 </div>
+
+                <button type="submit">Оставить отзыв</button>
+            </form>
+            <div class="disclaimer">
+                Нажимая кнопку, вы даёте согласие на 
+                <a href="/docs/privacy-policy.pdf" download class="highlight">обработку персональных данных</a>
             </div>
+        </div>
 
-            <div class="review-display">
-                <div id="reviews-container" class="review-item">
-
-                    <div class="stars">
-                        <img src="{{ url_for('static', filename='/img/application-review/star-filled.png') }}" alt="звезда" class="star-img">
-                        <img src="{{ url_for('static', filename='/img/application-review/star-filled.png') }}" alt="звезда" class="star-img">
-                        <img src="{{ url_for('static', filename='/img/application-review/star-filled.png') }}" alt="звезда" class="star-img">
-                        <img src="{{ url_for('static', filename='/img/application-review/star-filled.png') }}" alt="звезда" class="star-img">
-                        <img src="{{ url_for('static', filename='/img/application-review/star-filled.png') }}" alt="звезда" class="star-img">
-                    </div>
-
-                    <p class="review-text">
-                        Был в гостях у ребят в 2021 году, до этого ездил на охоту в Томпонский район.
-                        Какие плюсы. Первое. Доступная транспортная схема, до обеда вылетаешь на рейсовом
-                        самолете и вечером того же дня сидишь пьешь чай в охотничьей избушке. Второе.
-                        Комфортабельный теплый дом, комфортный отдых. Третье. Удобство передвижения
-                        по охотоводам, везде на буранах. Ну и гарантированная добыча трофея. Классные
-                        обученные собаки по следам быстро находят добычу. Ранее в горах Хандыги надо
-                        было в день по 5-6 часов ходить по горам и не увидеть даже следы. Общее
-                        впечатление - ВИП охота с гарантированным результатом и морем эмоций и впечатлений. Рекомендую!
-                    </p>
-
-                    <div class="review-author">
-                        <img src="{{ url_for('static', filename='/img/application-review/avatar.png') }}" alt="Автор отзыва" class="avatar">
-                        <span>Джулустан</span>
-                    </div>
-                </div>
+        <!-- Отображение отзывов -->
+        <div class="review-display">
+            <div id="reviews-container" class="reviews-container">
+                <!-- Здесь будут динамически подгружаться .review-item -->
             </div>
         </div>
     </section>
