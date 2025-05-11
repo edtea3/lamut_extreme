@@ -417,24 +417,20 @@
 
             <div class="review-form">
                 <form id="reviewForm">
-                    <input type="text" id="reviewName" placeholder="Ваше имя" required>
-                    <textarea id="reviewComment" placeholder="Ваш отзыв" required></textarea>
+                    <input type="text" id="reviewName" name="reviewName" placeholder="Ваше имя" required>
+                    <textarea id="reviewComment" name="reviewComment" placeholder="Ваш отзыв" required></textarea>
 
                     <div class="rating-stars">
-                        <input type="radio" id="star5" name="rating" value="5">
-                        <label for="star5"></label>
-                        <input type="radio" id="star4" name="rating" value="4">
-                        <label for="star4"></label>
-                        <input type="radio" id="star3" name="rating" value="3">
-                        <label for="star3"></label>
-                        <input type="radio" id="star2" name="rating" value="2">
-                        <label for="star2"></label>
-                        <input type="radio" id="star1" name="rating" value="1">
-                        <label for="star1"></label>
+                        <input type="radio" id="star5" name="rating" value="5"><label for="star5"></label>
+                        <input type="radio" id="star4" name="rating" value="4"><label for="star4"></label>
+                        <input type="radio" id="star3" name="rating" value="3"><label for="star3"></label>
+                        <input type="radio" id="star2" name="rating" value="2"><label for="star2"></label>
+                        <input type="radio" id="star1" name="rating" value="1"><label for="star1"></label>
                     </div>
 
                     <button type="submit">Оставить отзыв</button>
                 </form>
+
                 <div class="disclaimer">
                     Нажимая кнопку, вы даёте согласие на 
                     <a href="/docs/privacy-policy.pdf" download class="highlight">обработку персональных данных</a>

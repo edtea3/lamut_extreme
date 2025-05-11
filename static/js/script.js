@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     elements.forEach(el => observer.observe(el));
 
-
     // === 2. Анимация шапки: показывается если scrollY <= 600, скрывается если scrollY > 600 ===
     const header = document.querySelector('header');
 
@@ -131,28 +130,27 @@ document.addEventListener("DOMContentLoaded", function () {
     async function loadReviews() {
         try {
             const res = await fetch('/get-reviews');
-    
-            // Проверка успешности запроса
+
             if (!res.ok) {
                 console.error("Ошибка HTTP при загрузке отзывов:", res.status);
                 return;
             }
-    
+
             const reviews = await res.json();
-    
-            // Проверка, что пришёл массив
+
             if (!Array.isArray(reviews)) {
                 console.error("Неверный формат данных: ожидается массив");
                 return;
             }
-    
+
             const container = document.getElementById('reviews-container');
-            if (!container) return; // Защита от отсутствия контейнера
-            container.innerHTML = '';
-    
+            if (!container) return; 
+
+            container.innerHTML = ''; 
+
             // Флаг для активного слайда
             let firstItem = true;
-    
+
             reviews.forEach((review) => {
                 // Проверка полей каждого отзыва
                 if (
@@ -162,16 +160,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     !('rating' in review)
                 ) {
                     console.warn("Пропущен некорректный отзыв:", review);
-                    return; // пропускаем этот отзыв
+                    return;
                 }
-    
-                // Приведение рейтинга к числу
+
                 const rating = parseInt(review.rating, 10);
                 if (isNaN(rating) || rating < 1 || rating > 5) {
                     console.warn("Некорректный рейтинг в отзыве:", review);
-                    return; // пропускаем
+                    return;
                 }
-    
+
                 // Создание элемента отзыва
                 const div = document.createElement('div');
                 div.className = 'review-item';
@@ -179,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     div.classList.add('active');
                     firstItem = false;
                 }
-    
+
                 // Звезды
                 const stars = document.createElement('div');
                 stars.className = 'stars';
@@ -192,36 +189,36 @@ document.addEventListener("DOMContentLoaded", function () {
                     img.className = "star-img";
                     stars.appendChild(img);
                 }
-    
+
                 // Текст отзыва
                 const text = document.createElement('p');
                 text.className = 'review-text';
                 text.textContent = review.comment;
-    
+
                 // Автор
                 const author = document.createElement('div');
                 author.className = 'review-author';
-    
+
                 const avatar = document.createElement('img');
                 avatar.src = "/static/img/application-review/avatar.png";
                 avatar.alt = "Автор";
                 avatar.className = "avatar";
-    
+
                 const span = document.createElement('span');
                 span.textContent = review.name;
-    
+
                 author.appendChild(avatar);
                 author.appendChild(span);
-    
+
                 // Сборка
                 div.appendChild(stars);
                 div.appendChild(text);
                 div.appendChild(author);
                 container.appendChild(div);
             });
-    
+
             startCarousel(); // запуск слайдера
-    
+
         } catch (err) {
             console.error("Ошибка загрузки отзывов:", err);
         }
@@ -240,42 +237,48 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 6000);
     }
 
-    const reviewForm = document.getElementById('reviewForm');
+    loadReviews(); // загрузка отзывов при старте
+
+    // === 5. Отправка отзыва ===
+    const reviewForm = document.getElementById("reviewForm");
+
     if (reviewForm) {
-        reviewForm.addEventListener('submit', async function (e) {
-            e.preventDefault();
+        reviewForm.addEventListener("submit", async (e) => {
+            e.preventDefault(); // предотвращаем перезагрузку страницы
 
-            const name = document.getElementById('reviewName').value.trim();
-            const comment = document.getElementById('reviewComment').value.trim();
-            const rating = document.querySelector('input[name="rating"]:checked');
+            const name = document.getElementById("reviewName").value;
+            const comment = document.getElementById("reviewComment").value;
+            const rating = document.querySelector('input[name="rating"]:checked')?.value;
 
-            if (!rating) {
-                alert("Выберите оценку");
+            if (!name || !comment || !rating) {
+                alert("Пожалуйста, заполните все поля.");
                 return;
             }
 
-            const response = await fetch('/submit-review', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: new URLSearchParams({
-                    reviewName: name,
-                    reviewComment: comment,
-                    rating: rating.value
-                })
-            });
+            const formData = new FormData();
+            formData.append('reviewName', name);
+            formData.append('reviewComment', comment);
+            formData.append('rating', rating);
 
-            const result = await response.json();
-            if (result.status === 'success') {
-                this.reset();
-                loadReviews();
-                showModal('modal-review');
-            } else {
-                alert("Ошибка при сохранении отзыва");
+            try {
+                const res = await fetch("/submit-review", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const result = await res.json();
+                console.log("Ответ от сервера:", result);
+
+                if (result.status === "success") {
+                    alert("Отзыв успешно добавлен!");
+                    loadReviews(); // перезагружаем отзывы
+                    showModal('modal-review');
+                } else {
+                    alert("Ошибка при отправке отзыва.");
+                }
+            } catch (err) {
+                console.error("Ошибка при отправке отзыва:", err);
             }
         });
     }
-
-    loadReviews();
 });

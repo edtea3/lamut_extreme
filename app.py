@@ -1,9 +1,9 @@
 from flask import Flask, request, render_template, jsonify
-import smtplib
-from email.message import EmailMessage
 from dotenv import load_dotenv
 import os
-import json
+from supabase import create_client
+from email.message import EmailMessage
+import smtplib
 
 app = Flask(__name__)
 
@@ -15,11 +15,10 @@ app.secret_key = os.getenv('SECRET_KEY')
 EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 
-# Файл для хранения отзывов
-REVIEWS_FILE = 'reviews.json'
-if not os.path.exists(REVIEWS_FILE):
-    with open(REVIEWS_FILE, 'w') as f:
-        json.dump([], f)
+# Подключение к Supabase
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # === Функции ===
 def send_email(subject, text):
@@ -35,7 +34,7 @@ def send_email(subject, text):
     print("Письмо отправлено")
 
 
-# === Роуты ===
+# --- Роуты ---
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -61,9 +60,15 @@ def send_data():
 # --- Обработка отзыва ---
 @app.route('/submit-review', methods=['POST'])
 def submit_review():
+    print("DEBUG: Headers:", request.headers)
+    print("DEBUG: Form Data:", request.form)
+    print("DEBUG: Raw Data:", request.data)
+
     name = request.form.get('reviewName')
     comment = request.form.get('reviewComment')
     rating = request.form.get('rating')
+
+    print("DEBUG:", name, comment, rating)
 
     if not all([name, comment, rating]):
         return jsonify({'status': 'error', 'message': 'Все поля обязательны'}), 400
@@ -74,21 +79,30 @@ def submit_review():
         'rating': int(rating)
     }
 
-    with open(REVIEWS_FILE, 'r+', encoding='utf-8') as f:
-        data = json.load(f)
-        data.append(new_review)
-        f.seek(0)
-        json.dump(data, f, ensure_ascii=False, indent=4)
+    try:
+        response = supabase.table("reviews").insert(new_review).execute()
+        print("DEBUG: Вставка ответа:", response)
 
-    return jsonify({'status': 'success'})
+        # Убедимся, что вставка прошла успешно
+        if not response.data:
+            return jsonify({'status': 'error', 'message': 'Ошибка при добавлении отзыва'}), 500
+
+        return jsonify({'status': 'success', 'data': response.data[0]})
+
+    except Exception as e:
+        print("Ошибка при обработке отзыва:", e)
+        return jsonify({'status': 'error', 'message': 'Ошибка при обработке отзыва'}), 500
 
 
 # --- Получение отзывов ---
 @app.route('/get-reviews')
 def get_reviews():
-    with open(REVIEWS_FILE, 'r', encoding='utf-8') as f:
-        reviews = json.load(f)
-    return jsonify(reviews)
+    try:
+        response = supabase.table("reviews").select("*").order("created_at", desc=True).execute()
+        return jsonify(response.data)
+    except Exception as e:
+        print(f"Ошибка при получении отзывов: {e}")
+        return jsonify({'status': 'error', 'message': str(e)}), 500
 
 
 if __name__ == '__main__':
