@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, flash, jsonify
+from flask import Flask, request, render_template, jsonify
 import smtplib
 from email.message import EmailMessage
 from dotenv import load_dotenv

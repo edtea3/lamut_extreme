@@ -137,6 +137,9 @@
 
             <!-- Левая колонка текста -->
             <div class="left-column">
+                <div class="mobile-icon">
+                    <img src="{{ url_for('static', filename='/img/tour program/1.png') }}" alt="Иконка 1">
+                </div>
                 <div class="step-content">
                     <p>Встреча в аэропорту г. Якутск</p>
                     <p>Трансфер до с. Себян-Кюель</p>
@@ -147,6 +150,9 @@
 
             <!-- Центральная колонка текста -->
             <div class="center-column">
+                <div class="mobile-icon">
+                    <img src="{{ url_for('static', filename='/img/tour program/2-6.png') }}" alt="Иконка 1">
+                </div>
                 <div class="step-content">
                     <p>Ежедневная охота в горах</p>
                     <p>Поиск и скрадывание зверя с использованием якутских лаек</p>
@@ -161,6 +167,9 @@
 
             <!-- Правая колонка текста -->
             <div class="right-column">
+                <div class="mobile-icon">
+                    <img src="{{ url_for('static', filename='/img/tour program/7.png') }}" alt="Иконка 1">
+                </div>
                 <div class="step-content">
                     <p>Консервация и упаковка трофеев</p>
                     <p>Возвращение в г. Якутск</p>
@@ -378,7 +387,7 @@
                     <label for="question">Ваш вопрос:</label><br>
                     <textarea id="question" name="question" placeholder="Ваш вопрос"></textarea><br><br>
                 
-                    <button type="submit">Отправить</button>
+                    <button type="submit">Отправить заявку</button>
                 </form>
                 <div class="disclaimer">
                     Нажимая кнопку, вы даёте согласие<br>на <a href="docs/privacy-policy.pdf" download class="highlight">обработку персональных данных</a>
@@ -406,37 +415,37 @@
                 <p>Мы будем рады узнать ваше мнение</p>
             </div>
 
-        <div class="review-form">
-            <form id="reviewForm">
-                <input type="text" id="reviewName" placeholder="Ваше имя" required>
-                <textarea id="reviewComment" placeholder="Ваш отзыв" required></textarea>
+            <div class="review-form">
+                <form id="reviewForm">
+                    <input type="text" id="reviewName" placeholder="Ваше имя" required>
+                    <textarea id="reviewComment" placeholder="Ваш отзыв" required></textarea>
 
-                <div class="rating-stars">
-                    <input type="radio" id="star5" name="rating" value="5">
-                    <label for="star5"></label>
-                    <input type="radio" id="star4" name="rating" value="4">
-                    <label for="star4"></label>
-                    <input type="radio" id="star3" name="rating" value="3">
-                    <label for="star3"></label>
-                    <input type="radio" id="star2" name="rating" value="2">
-                    <label for="star2"></label>
-                    <input type="radio" id="star1" name="rating" value="1">
-                    <label for="star1"></label>
+                    <div class="rating-stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5"></label>
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4"></label>
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3"></label>
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2"></label>
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1"></label>
+                    </div>
+
+                    <button type="submit">Оставить отзыв</button>
+                </form>
+                <div class="disclaimer">
+                    Нажимая кнопку, вы даёте согласие на 
+                    <a href="/docs/privacy-policy.pdf" download class="highlight">обработку персональных данных</a>
                 </div>
-
-                <button type="submit">Оставить отзыв</button>
-            </form>
-            <div class="disclaimer">
-                Нажимая кнопку, вы даёте согласие на 
-                <a href="/docs/privacy-policy.pdf" download class="highlight">обработку персональных данных</a>
             </div>
-        </div>
 
-        <div class="review-display">
-            <div id="reviews-container" class="reviews-container">
-                <!-- Здесь будут динамически подгружаться .review-item -->
+            <div class="review-display">
+                <div id="reviews-container" class="reviews-container">
+                    <!-- Здесь будут динамически подгружаться .review-item -->
+                </div>
             </div>
-        </div>
     </section>
 
     <!-- Секция "Футер" -->
