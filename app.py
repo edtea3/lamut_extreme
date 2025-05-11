@@ -6,8 +6,10 @@ import os
 import json
 
 app = Flask(__name__)
-app.secret_key = 'your-secret-key'  # обязательно!
+
 load_dotenv()
+
+app.secret_key = os.getenv('SECRET_KEY')
 
 # Настройки почты
 EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
