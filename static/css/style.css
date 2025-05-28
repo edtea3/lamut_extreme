@@ -783,6 +783,10 @@ header.hidden {
     margin-bottom: 20px;
 }
 
+.card.cost li {
+    margin-top: 130px;
+}
+
 .card.condition li {
     margin-bottom: 50px;
 }
@@ -886,6 +890,10 @@ header.hidden {
     .card .bullet {
         width: 40px; /* Уменьшаем размер иконки */
         height: 40px;
+    }
+
+    .card.cost li {
+        margin-top: 50px;
     }
 
     /* Для списков в карточках */
@@ -1627,7 +1635,20 @@ footer {
     font-size: 14px;
 }
 
+.mobile-contacts {
+    display: none;
+    font-size: 14px;
+    color: #fff;
+}
+
 @media screen and (max-width: 768px) {
+    .mobile-contacts {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+    }
+
     .footer-content {
         flex-direction: row;
         flex-wrap: wrap; /* позволяет блокам переноситься */

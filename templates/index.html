@@ -21,7 +21,7 @@
             <ul class="nav-links">
                 <li><a href="#about-hunting-farm">Тур</a></li>
                 <li><a href="#review">Отзывы</a></li>
-                <li><a href="#application">Контакты</a></li>
+                <li><a id="contact-link" href="#mobile-contacts">Контакты</a></li>
                 <li>
                     <a href="https://drive.google.com/drive/folders/1xXUOO6dJEhT6WYVMAfoxpdNtJgVWNS82?usp=sharing" target="_blank">
                         Галерея
@@ -311,19 +311,7 @@
                 <ul>
                     <li>
                         <img src="{{ url_for('static', filename='/img/peculiarity/snipe_1.png') }}" alt="Значок" class="bullet">
-                        <p><strong>Для 1 охотника (1 трофей)</strong><br>1 300 тыс. рублей</p>
-                    </li>
-                    <li>
-                        <img src="{{ url_for('static', filename='/img/peculiarity/snipe_1.png') }}" alt="Значок" class="bullet">
-                        <p><strong>Для 2 охотников (2 трофея)</strong><br>1 840 тыс. рублей</p>
-                    </li>
-                    <li>
-                        <img src="{{ url_for('static', filename='/img/peculiarity/snipe_1.png') }}" alt="Значок" class="bullet">
-                        <p><strong>Для 3 охотников</strong><br>2 300 тыс. рублей</p>
-                    </li>
-                    <li>
-                        <img src="{{ url_for('static', filename='/img/peculiarity/snipe_1.png') }}" alt="Значок" class="bullet">
-                        <p><strong>Для 4 охотников</strong><br>2 760 тыс. рублей</p>
+                        <p>Для <strong>одного охотника</strong> предусмотрен <strong>один трофей</strong>.<br>Стартовая цена — от 1 300 тыс. рублей. Окончательная стоимость формируется <strong>индивидуально</strong>, в зависимости от пожеланий клиента.</p>
                     </li>
                 </ul>
             </div>
@@ -394,7 +382,7 @@
                 </div>
             </div>
             
-            <div class="right-section">
+            <div id="desktop-contacts" class="right-section" >
                 <div class="contact-info">
                     <h2>Контакты</h2>
                     <p><strong>Телефон</strong></p>
@@ -447,6 +435,12 @@
     <!-- Секция "Футер" -->
     <footer>
         <div class="footer-content">
+            <!-- Контакты -->
+            <div id="mobile-contacts" class="mobile-contacts">
+                <p>Тел:<br>8-967-624-44-73<br>8-962-737-68-21<br>8-962-736-58-33</p>
+                <p>Email:<br>efim.sebyan@mail.ru<br>edpavlov2005@gmail.com</p>
+            </div>
+
             <!-- Левая часть с ссылками -->
             <ul class="links">
                 <li><a href="docs/privacy-policy.pdf" download>Политика<br>конфиденциальности</a></li>
@@ -506,6 +500,21 @@
                 }
             }
         };
+    </script>
+
+    <script>
+        function updateContactLink() {
+            const link = document.getElementById('contact-link');
+            if (window.innerWidth <= 768) {
+            link.href = '#mobile-contacts';
+            } else {
+            link.href = '#desktop-contacts';
+            }
+        }
+
+        // Запускаем при загрузке и при изменении размера окна
+        window.addEventListener('load', updateContactLink);
+        window.addEventListener('resize', updateContactLink);
     </script>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
