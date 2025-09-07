@@ -8,3 +8,4 @@ gunicorn
 python-dotenv
 supabase
 flask-wtf
+flask-limiter

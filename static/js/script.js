@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // === 1. Анимации появления/исчезновения ===
+    // === 1. Анимации ===
     const elements = document.querySelectorAll(
         ".fade-in-up, .fade-in-down, .fade-in-left, .fade-in-right",
     );
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // === 3. Общие функции для ошибок ===
+    // === 3. Общие функции ошибок ===
     function showError(input, message) {
         input.style.borderColor = "red";
         let error = input.nextElementSibling;
@@ -76,18 +76,35 @@ document.addEventListener("DOMContentLoaded", function () {
             .replace(/'/g, "&#039;");
     }
 
-    // === 5. Отправка заявки с XSS-защитой и rate limiting ===
+    // === Доп. фильтрация имени ===
+    function sanitizeName(name) {
+        return name.replace(/[^a-zA-Zа-яА-ЯёЁ\s-]/g, "");
+    }
+
+    // === Валидация телефона ===
+    function isValidPhone(phone) {
+        return /^\+?[0-9][0-9\- ]{9,14}$/.test(phone);
+    }
+
+    // === Honeypot check ===
+    function isBot() {
+        const hp = document.getElementById("hp-field");
+        return hp && hp.value.trim().length > 0;
+    }
+
+    // === 5. Отправка заявки ===
     const requestForm = document.getElementById("requestForm");
     if (requestForm) {
         let lastRequestTime = 0;
         const requestCooldown = 30 * 1000; // 30 секунд
 
-        function isValidPhone(phone) {
-            return /^[0-9+]{10,15}$/.test(phone);
-        }
-
         requestForm.addEventListener("submit", async function (e) {
             e.preventDefault();
+
+            if (isBot()) {
+                alert("Подозрительная активность. Запрос отклонён.");
+                return;
+            }
 
             const now = Date.now();
             if (now - lastRequestTime < requestCooldown) {
@@ -104,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const phoneInput = document.getElementById("phone");
             const questionInput = document.getElementById("question");
 
-            let name = sanitizeInput(nameInput.value.trim());
+            let name = sanitizeName(sanitizeInput(nameInput.value.trim()));
             let phone = sanitizeInput(phoneInput.value.trim());
             let question = sanitizeInput(questionInput.value.trim());
 
@@ -164,11 +181,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         ["name", "phone", "question"].forEach((id) => {
             const input = document.getElementById(id);
-            input.addEventListener("focus", () => clearError(input));
+            input.addEventListener("input", () => clearError(input));
         });
     }
 
-    // === 6. Загрузка отзывов ===
+    // === 6. Загрузка отзывов (без изменений, кроме безопасности) ===
     async function loadReviews() {
         try {
             const res = await fetch("/get-reviews");
@@ -248,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     loadReviews();
 
-    // === 7. Отправка отзывов с rate limiting ===
+    // === 7. Отправка отзывов (аналогично заявке) ===
     const reviewForm = document.getElementById("reviewForm");
     if (reviewForm) {
         let lastReviewTime = 0;
@@ -256,6 +273,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         reviewForm.addEventListener("submit", async (e) => {
             e.preventDefault();
+
+            if (isBot()) {
+                alert("Подозрительная активность. Отзыв отклонён.");
+                return;
+            }
 
             const now = Date.now();
             if (now - lastReviewTime < reviewCooldown) {
@@ -268,8 +290,10 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             lastReviewTime = now;
 
-            const name = sanitizeInput(
-                document.getElementById("reviewName").value.trim(),
+            const name = sanitizeName(
+                sanitizeInput(
+                    document.getElementById("reviewName").value.trim(),
+                ),
             );
             const comment = sanitizeInput(
                 document.getElementById("reviewComment").value.trim(),
@@ -318,6 +342,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // === 8. Подсказки для полей отзывов ===
     ["reviewName", "reviewComment"].forEach((id) => {
         const input = document.getElementById(id);
-        input.addEventListener("focus", () => clearError(input));
+        input.addEventListener("input", () => clearError(input));
     });
 });

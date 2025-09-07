@@ -6,6 +6,8 @@ from email.message import EmailMessage
 import smtplib
 import secrets
 from flask_wtf import CSRFProtect
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 app = Flask(__name__)
 
@@ -55,6 +57,10 @@ def home():
 # --- Обработка вопроса ---
 @app.route('/send', methods=['POST'])
 def send_data():
+    # Honeypot проверка
+    if request.form.get('hp-field'):
+        return jsonify({'status': 'error', 'message': 'Spam detected'}), 400
+
     name = request.form.get('name')
     phone = request.form.get('phone')
     question = request.form.get('question')
@@ -66,12 +72,16 @@ def send_data():
         return jsonify({'status': 'success'})
     except Exception as e:
         print(e)
-        return jsonify({'status': 'error'})
+        return jsonify({'status': 'error'}), 500
 
 
 # --- Обработка отзыва ---
 @app.route('/submit-review', methods=['POST'])
 def submit_review():
+    # Honeypot проверка
+    if request.form.get('hp-field'):
+        return jsonify({'status': 'error', 'message': 'Spam detected'}), 400
+
     print("DEBUG: Headers:", request.headers)
     print("DEBUG: Form Data:", request.form)
     print("DEBUG: Raw Data:", request.data)
@@ -98,7 +108,6 @@ def submit_review():
         response = supabase.table("reviews").insert(new_review).execute()
         print("DEBUG: Вставка ответа:", response)
 
-        # Убедимся, что вставка прошла успешно
         if not response.data:
             return jsonify({'status': 'error', 'message': 'Ошибка при добавлении отзыва'}), 500
 
