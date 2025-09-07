@@ -15,6 +15,13 @@ csrf = CSRFProtect(app)
 
 load_dotenv()
 
+# Инициализация лимитера
+limiter = Limiter(
+    key_func=get_remote_address,
+    default_limits=["200 per day", "50 per hour"],  # дефолтные ограничения
+    app=app
+)
+
 app.secret_key = os.getenv('SECRET_KEY', secrets.token_hex(32))
 
 # Настройки почты
@@ -56,8 +63,8 @@ def home():
 
 # --- Обработка вопроса ---
 @app.route('/send', methods=['POST'])
+@limiter.limit("3 per minute")  # максимум 3 заявки с одного IP в минуту
 def send_data():
-    # Honeypot проверка
     if request.form.get('hp-field'):
         return jsonify({'status': 'error', 'message': 'Spam detected'}), 400
 
@@ -77,6 +84,7 @@ def send_data():
 
 # --- Обработка отзыва ---
 @app.route('/submit-review', methods=['POST'])
+@limiter.limit("3 per minute")  # максимум 3 отзыва с одного IP в минуту
 def submit_review():
     # Honeypot проверка
     if request.form.get('hp-field'):
