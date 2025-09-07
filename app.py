@@ -5,8 +5,11 @@ from supabase import create_client
 from email.message import EmailMessage
 import smtplib
 import secrets
+from flask_wtf import CSRFProtect
 
 app = Flask(__name__)
+
+csrf = CSRFProtect(app)
 
 load_dotenv()
 

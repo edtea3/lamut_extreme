@@ -365,16 +365,17 @@
             </div>
 
             <div class="form-container">
-                <form id="requestForm">
+                <form id="requestForm" method="POST" action="/send">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <label for="name">Ваше имя:</label><br>
                     <input type="text" id="name" name="name" placeholder="Ваше имя"><br><br>
-                
+
                     <label for="phone">Телефон:</label><br>
                     <input type="text" id="phone" name="phone" placeholder="Ваши контакты"><br><br>
-                
+
                     <label for="question">Ваш вопрос:</label><br>
                     <textarea id="question" name="question" placeholder="Ваш вопрос"></textarea><br><br>
-                
+
                     <button type="submit">Отправить заявку</button>
                 </form>
                 <div class="disclaimer">
@@ -404,7 +405,8 @@
             </div>
 
             <div class="review-form">
-                <form id="reviewForm">
+                <form id="reviewForm" method="POST" action="/submit-review">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <input type="text" id="reviewName" name="reviewName" placeholder="Ваше имя" required>
                     <textarea id="reviewComment" name="reviewComment" placeholder="Ваш отзыв" required></textarea>
 
@@ -520,6 +522,3 @@
 
 </body>
 </html>
-
-
-
