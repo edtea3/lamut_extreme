@@ -18,7 +18,12 @@ EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 # Подключение к Supabase
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+if SUPABASE_URL and SUPABASE_KEY:
+    supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+else:
+    supabase = None
+    print("WARNING: Supabase credentials not configured")
 
 # === Функции ===
 def send_email(subject, text):
@@ -82,6 +87,9 @@ def submit_review():
         'rating': int(rating)
     }
 
+    if not supabase:
+        return jsonify({'status': 'error', 'message': 'База данных не настроена'}), 500
+
     try:
         response = supabase.table("reviews").insert(new_review).execute()
         print("DEBUG: Вставка ответа:", response)
@@ -100,6 +108,9 @@ def submit_review():
 # --- Получение отзывов ---
 @app.route('/get-reviews')
 def get_reviews():
+    if not supabase:
+        return jsonify([])  # Return empty array if database not configured
+    
     try:
         response = supabase.table("reviews").select("*").order("created_at", desc=True).execute()
         return jsonify(response.data)
