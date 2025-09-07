@@ -4,12 +4,13 @@ import os
 from supabase import create_client
 from email.message import EmailMessage
 import smtplib
+import secrets
 
 app = Flask(__name__)
 
 load_dotenv()
 
-app.secret_key = os.getenv('SECRET_KEY')
+app.secret_key = os.getenv('SECRET_KEY', secrets.token_hex(32))
 
 # Настройки почты
 EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
